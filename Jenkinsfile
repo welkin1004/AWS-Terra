@@ -19,7 +19,7 @@ pipeline{
             
             steps{
 
-                git branch: 'main', url: 'https://github.com/vikash-kumar01/terraformtesting.git'
+                git branch: 'main', url: 'https://github.com/welkin1004/AWS-Terra-1.git'
             }
         }
         stage('terraform init'){
@@ -34,7 +34,7 @@ pipeline{
             steps{
 
                 sh """
-                 terraform plan -var 'access_key=$ACCESS_KEY' -var 'secret_key=$SECRET_KEY' --var-file=./config/dev.tfvars
+                 terraform plan -var 'access_key=$ACCESS_KEY' -var 'secret_key=$SECRET_KEY' --var-file=terra.tfvars
                 """
             }
         }
@@ -60,7 +60,7 @@ pipeline{
                    if(apply){
                   
                 sh """
-                 terraform apply -var 'access_key=$ACCESS_KEY' -var 'secret_key=$SECRET_KEY' --var-file=./config/dev.tfvars --auto-approve
+                 terraform apply -var 'access_key=$ACCESS_KEY' -var 'secret_key=$SECRET_KEY' --var-file=terra.tfvars --auto-approve
                 """
                    }
 
@@ -71,7 +71,7 @@ pipeline{
 
           steps{
                             sh """
-                 terraform destroy -var 'access_key=$ACCESS_KEY' -var 'secret_key=$SECRET_KEY' --var-file=./config/dev.tfvars --auto-approve
+                 terraform destroy -var 'access_key=$ACCESS_KEY' -var 'secret_key=$SECRET_KEY' --var-file=terra.tfvars --auto-approve
                 """
           }
         }
